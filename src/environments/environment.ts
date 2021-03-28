@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  currencyLayerKey: '58fd176dd51231f28869c6ca868dd72f',
+  configUrl: 'http://localhost:3000/api/expenseItems',
+  currencyLayerUrl: 'http://api.currencylayer.com/',
 };
 
 /*

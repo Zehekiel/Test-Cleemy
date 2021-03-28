@@ -1,0 +1,266 @@
+  :host {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 8px 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+
+  .toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #5FC871;
+    color: white;
+    font-size: 25px;
+  }
+
+  .toolbar img {
+    margin: 0 5px;
+    height: 30px;
+  }
+
+  .filterspan{ 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .filterButtonBar img{ 
+    margin-left:7px;
+  }
+
+  .content {
+    display: flex;
+    margin: 82px auto 32px;
+    padding: 10px 20px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 16px;
+  }
+
+  .cardTitle {
+    background-color: #2cb142;
+    color: white;
+    font-weight: 600;
+    border-radius: 10px;
+    width: auto;
+    padding: 5px 10px;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    width: 290px;
+    min-height: 105px;
+    border-radius: 4px;
+    border: 1px solid #eee;
+    background-color: #fafafa;
+    margin: 0 8px 16px;
+    padding: 16px;
+    transition: all 0.2s ease-in-out;
+    line-height: 24px;
+    pointer-events: all;
+  }
+
+  .trash {
+    position: relative;
+    top: -20px;
+    right: -50px;
+    justify-content: flex-end;
+    height: 20px;
+  }
+
+  .edit {
+    position: relative;
+    top: -20px;
+    right: 0px;
+    justify-content: flex-end;
+    height: 20px;
+  }
+
+  .card-container :last-child {
+    align-items: center;
+  }
+
+  .column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    column-count: 1;
+    column-gap: 10px;
+    align-items: flex-start;
+    height: 100%;
+    width: 100%;
+  }
+
+  .card .column:last-child{
+    margin-left: 20px;
+  }
+
+  .card-container .card {
+    cursor: pointer;
+  }
+
+  .card-container .card:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+  }
+
+
+  /* Responsive Styles */
+  @media screen and (max-width: 767px) {
+
+    .card-container {
+      width: 100%;
+    }
+
+    .card {
+      margin: 8px 0;
+    }
+  }
+
+.addmodalshow {
+  display: flex;
+}
+
+.setmodalhidden {
+  display: none;
+}
+
+.setmodalshow {
+  display: flex;
+}
+
+.addmodalhidden {
+  display: none;
+}
+
+.mmodal {
+  z-index: 1000;
+  position: absolute;
+  top: 33%;
+  right: 25%;
+  left: 25%;
+  max-width: 500px;
+}
+
+.mmodal-body {
+  z-index: 1500;
+  background: #fff;
+  margin: 40px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border-radius: 15px;
+}
+
+.mmodal-background {
+  z-index: 500;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #000;
+  opacity: 0.95;
+}
+
+input {
+  border-radius: 10px;
+  border: 1px solid #5FC871;
+  margin: 5px;
+  height: 25px;
+  padding-left: 10px;
+  min-width: 30px;
+  pointer-events: all;
+}
+
+select {
+  border-radius: 10px;
+  border: 1px solid #5FC871;
+  margin: 5px;
+  height: 25px;
+  padding-left: 10px;
+  min-width: 30px;
+  background-color: #ffffff;
+
+}
+
+option {
+  background-color: #ffffff;
+}
+
+.modalButtons {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  justify-content: space-around;
+}
+
+button {
+  background-color: #19882c;
+  color: white;
+  border-radius: 25px;
+  width: auto;
+  padding: 5px 10px;
+  pointer-events: visible;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+}
+
+#purchasedOn {
+  margin: 10px;
+}
+
+.page{
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+}
+
+.numberpage{
+  width: 10px;
+  cursor: pointer;
+  margin: 10px
+}
