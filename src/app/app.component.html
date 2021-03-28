@@ -78,11 +78,10 @@
   <div class="setmodalhidden">
     <div class="mmodal">
       <div class="mmodal-body">
-
         <h3>Modifier une dépense</h3>
         <form>
           <input name="nature" type='text' placeholder='Intitulé' [formControl]="setNature" value={{setExpense.nature}} required />
-          <input name="comment" type='text' placeholder=setExpense.comment [formControl]="setComment" value={{setExpense.comment}} required />
+          <input name="comment" type='text' placeholder='Commentaire' [formControl]="setComment" value={{setExpense.comment}} required />
           <span>
             <input name="originalAmount" type='number' placeholder="Montant*" [formControl]="setOriginalAmount" value={{setExpense.originalAmount.amount}} required />
               <select [formControl]="setOriginalCurrency" value={{setExpense.originalAmount.currency}} required >
@@ -99,7 +98,7 @@
 
         </form>
         <span class='modalButtons'> 
-          <button (click)=saveSetExpense() >Enregistrer</button>
+          <button (click)=saveSetExpense()>Enregistrer</button>
           <button (click)=closeModalsetExpense()>Fermer</button>
         </span>
       </div>

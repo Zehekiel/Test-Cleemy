@@ -12,7 +12,7 @@ import { environment } from './../environments/environment'
 
 export class AppComponent {
   currencyList = [
-    {value:'USD', symbol: ''},
+    {value:'USD', symbol: '$'},
     {value:'GBP', symbol: '£'},
     {value:'EUR', symbol: '€'},
     {value:'JPY', symbol: '¥'},
@@ -41,7 +41,7 @@ export class AppComponent {
 
   // API
   addToExpense(newExpense) {
-    return this.http.post<Config>(environment.configUrl, newExpense)
+    return this.http.post<Config>(environment.configUrl, newExpense).subscribe(() => this.getItemPage(this.actualPage))
   }
 
   getItems() {
@@ -49,11 +49,13 @@ export class AppComponent {
   }
 
   getItemPage(page: number) {
-    return this.http.get<Config>(`${environment.configUrl}?_page=${page}&_limit=10`).subscribe(res => {this.expensePage = res, this.createPagination(this.AllExpenseItems), this.actualPage= page})
+    return this.http.get<Config>(`${environment.configUrl}?_page=${page}&_limit=10`).subscribe(res => {this.expensePage = res, this.getItems(), this.createPagination(this.AllExpenseItems), this.actualPage= page})
   }
 
   putOneItem(id :string) {
-    this.http.put(`${environment.configUrl}/${id}`, this.setExpense)
+    console.log('id', id)
+    return this.http.put<Config>(`${environment.configUrl}/${id}`, this.setExpense).subscribe(res => {console.log('res', res)})
+    
   }
 
   getFilteredItem(date :string, type: string) {
@@ -61,8 +63,7 @@ export class AppComponent {
   }
 
   deleteOneExpense(id: string) {
-    const url = `${environment.configUrl}/${id}`
-    return this.http.delete(url).subscribe(res => {this.getItemPage(this.actualPage)})
+    return this.http.delete(`${environment.configUrl}/${id}`).subscribe(res => {this.getItemPage(this.actualPage)})
   }
 
   createPagination(store: Array<any>) {
@@ -84,7 +85,6 @@ export class AppComponent {
       this.createPagination(this.expensePage)
     }
   }
-
 
   // MODAL ADD EXPENSE
   nature = new FormControl('')
@@ -159,7 +159,6 @@ export class AppComponent {
   setOriginalCurrency = new FormControl('')
   setPurchasedOn = new FormControl('')
 
-
   showModalSetExpense(index: string): any{
     this.setExpense= this.expensePage[index]
     let modal_s  = document.getElementsByClassName('setmodalhidden')
@@ -178,27 +177,21 @@ export class AppComponent {
       {set: this.setNature.value, object: 'nature'},
       {set: this.setComment.value, object: 'comment'},
       {set: this.setPurchasedOn.value, object: 'purchasedOn'},
-    ]
-    const controlWhatFielSetObject = [
       {set: this.setOriginalAmount.value, object: 'originalAmount'},
       {set: this.setOriginalCurrency.value, object: 'originalCurrency'},
     ]
 
-      for (let field of controlWhatFielSetObject){
+      for (let field of controlWhatFielSet){
         if (field.set !== '') {
           if (field.object === 'originalAmount'){
             this.setExpense['originalAmount'] = {amount: field.set, currency: this.setExpense.originalAmount.currency}
             this.setExpense['convertedAmount'] = {amount: this.getConvertion(this.setExpense.originalAmount.currency, field.set), currency: this.setExpense.convertedAmount.currency}
-          } else {
+          } else if (field.object === 'originalCurrency') {
             this.setExpense['originalAmount'] = {amount: this.setExpense.originalAmount.amount, currency: field.set}
             this.setExpense['convertedAmount'] = {amount: this.getConvertion(field.set, this.setExpense.originalAmount.amount), currency: this.setExpense.convertedAmount.currency}
+          } else {
+            this.setExpense[field.object] = field.set
           }
-        }
-      }
-
-      for (let field of controlWhatFielSet){
-        if (field.set !== '') {
-          this.setExpense[field.object] = field.set
         }
       }
 
